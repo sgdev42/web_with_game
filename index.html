@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日祝福与电梯模拟器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="wish" aria-labelledby="wish-title">
+      <h1 id="wish-title">给晓宇的生日祝福</h1>
+      <p>
+        亲爱的晓宇，生日快乐呀！希望你新的一岁可以学会新的知识，体会新的感受。
+        祝你健康成长，每天开心充实！
+      </p>
+    </section>
+
+    <section class="game" aria-labelledby="game-title">
+      <h2 id="game-title">在线小游戏：电梯模拟器</h2>
+
+      <div class="simulator">
+        <div class="building" aria-label="电梯大楼">
+          <div class="shaft">
+            <div class="elevator" id="elevator">
+              <div class="door door-left" id="door-left"></div>
+              <div class="door door-right" id="door-right"></div>
+              <span class="elevator-label">电梯</span>
+            </div>
+          </div>
+
+          <div class="floors" id="floors"></div>
+        </div>
+
+        <aside class="panel" aria-label="电梯控制面板">
+          <p class="status" id="status">当前楼层：1F</p>
+          <p class="hint" id="scenery">1F 风景：大厅与绿植，阳光刚好。</p>
+
+          <div class="buttons" id="floor-buttons" aria-label="楼层按钮"></div>
+
+          <div class="door-controls">
+            <button type="button" id="open-door">开门</button>
+            <button type="button" id="close-door">关门</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
