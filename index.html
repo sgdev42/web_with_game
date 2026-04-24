@@ -19,38 +19,29 @@
     <section class="game" aria-labelledby="game-title">
       <h2 id="game-title">在线小游戏：电梯模拟器</h2>
 
-      <div class="scene-stage" aria-label="第一人称电梯视角">
-        <div class="camera" id="camera">
-          <img id="scene-image" class="scene-image" src="assets/scenes/floor-1-lobby.jpg" alt="1楼电梯外场景">
-          <div class="view-door view-door-left" id="view-door-left"></div>
-          <div class="view-door view-door-right" id="view-door-right"></div>
-          <p class="floor-chip" id="floor-chip">1F</p>
-        </div>
-      </div>
-
-      <div class="simulator">
-        <div class="building" aria-label="电梯大楼">
-          <div class="shaft">
-            <div class="elevator" id="elevator">
-              <div class="door door-left"></div>
-              <div class="door door-right"></div>
-              <span class="elevator-label">电梯</span>
-            </div>
+      <div class="elevator-sim" aria-label="电梯控制体验">
+        <div class="cab-view">
+          <div class="camera" id="camera">
+            <img id="scene-image" class="scene-image" src="assets/scenes/floor-1-lobby-v2.jpg" alt="1楼电梯外场景">
+            <div class="view-door view-door-left"></div>
+            <div class="view-door view-door-right"></div>
           </div>
-
-          <div class="floors" id="floors"></div>
         </div>
 
-        <aside class="panel" aria-label="电梯控制面板">
-          <p class="status" id="status">当前楼层：1F</p>
-          <p class="hint" id="scenery">1F 风景：大厅与绿植，阳光刚好。</p>
-
-          <div class="buttons" id="floor-buttons" aria-label="楼层按钮"></div>
-
-          <div class="door-controls">
-            <button type="button" id="open-door">开门</button>
-            <button type="button" id="close-door">关门</button>
+        <aside class="control-panel" aria-label="电梯按键面板">
+          <div class="display-wrap">
+            <p class="display-label">FLOOR</p>
+            <p class="display-floor" id="floor-chip">1</p>
           </div>
+
+          <div class="floor-buttons" id="floor-buttons" aria-label="楼层按钮"></div>
+
+          <div class="action-buttons">
+            <button type="button" class="action-btn" id="open-door">开</button>
+            <button type="button" class="action-btn" id="close-door">关</button>
+          </div>
+
+          <p class="status-light" id="status">IDLE</p>
         </aside>
       </div>
     </section>
