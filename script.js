@@ -1,14 +1,37 @@
 const floorData = [
-  { floor: 5, scenery: "5F 风景：屋顶花园，微风和远处天际线。" },
-  { floor: 4, scenery: "4F 风景：图书角与窗边长椅，适合安静看书。" },
-  { floor: 3, scenery: "3F 风景：游戏室，彩灯和欢笑声。" },
-  { floor: 2, scenery: "2F 风景：美术教室，画板和颜料很热闹。" },
-  { floor: 1, scenery: "1F 风景：大厅与绿植，阳光刚好。" }
+  {
+    floor: 5,
+    scenery: "5F 场景：屋顶花园与城市天际线。",
+    image: "assets/scenes/floor-5-rooftop.jpg"
+  },
+  {
+    floor: 4,
+    scenery: "4F 场景：书架环绕的图书区。",
+    image: "assets/scenes/floor-4-library.jpg"
+  },
+  {
+    floor: 3,
+    scenery: "3F 场景：活力游戏空间。",
+    image: "assets/scenes/floor-3-game-room.jpg"
+  },
+  {
+    floor: 2,
+    scenery: "2F 场景：光线充足的美术工作室。",
+    image: "assets/scenes/floor-2-art-room.jpg"
+  },
+  {
+    floor: 1,
+    scenery: "1F 场景：现代大厅入口。",
+    image: "assets/scenes/floor-1-lobby.jpg"
+  }
 ];
 
 const totalFloors = floorData.length;
 const floorHeight = 110;
 const elevator = document.getElementById("elevator");
+const camera = document.getElementById("camera");
+const sceneImageEl = document.getElementById("scene-image");
+const floorChipEl = document.getElementById("floor-chip");
 const floorsEl = document.getElementById("floors");
 const buttonsEl = document.getElementById("floor-buttons");
 const statusEl = document.getElementById("status");
@@ -34,6 +57,17 @@ function updateTexts() {
   const floorInfo = floorData.find((f) => f.floor === currentFloor);
   statusEl.textContent = `当前楼层：${currentFloor}F`;
   sceneryEl.textContent = floorInfo ? floorInfo.scenery : "";
+  floorChipEl.textContent = `${currentFloor}F`;
+}
+
+function updateSceneImage() {
+  const floorInfo = floorData.find((f) => f.floor === currentFloor);
+  if (!floorInfo) {
+    return;
+  }
+
+  sceneImageEl.src = floorInfo.image;
+  sceneImageEl.alt = `${currentFloor}楼电梯外场景`;
 }
 
 function markCurrentFloor() {
@@ -45,6 +79,7 @@ function markCurrentFloor() {
 function setDoor(open) {
   isDoorOpen = open;
   elevator.classList.toggle("open", open);
+  camera.classList.toggle("open", open);
 }
 
 function setButtonDisabled(disabled) {
@@ -61,6 +96,7 @@ function goToFloor(targetFloor) {
   setDoor(false);
   isMoving = true;
   setButtonDisabled(true);
+  camera.classList.add("moving");
   statusEl.textContent = `电梯运行中：前往 ${targetFloor}F`;
 
   currentFloor = targetFloor;
@@ -69,6 +105,8 @@ function goToFloor(targetFloor) {
   window.setTimeout(() => {
     isMoving = false;
     setButtonDisabled(false);
+    camera.classList.remove("moving");
+    updateSceneImage();
     updateTexts();
     markCurrentFloor();
   }, 1350);
@@ -81,7 +119,7 @@ function renderFloors() {
     floor.dataset.floor = String(item.floor);
     floor.innerHTML = `
       <span class="floor-num">${item.floor}F</span>
-      <span class="scene">${item.scenery.replace(`${item.floor}F 风景：`, "")}</span>
+      <span class="scene">${item.scenery.replace(`${item.floor}F 场景：`, "")}</span>
     `;
     floorsEl.appendChild(floor);
 
@@ -108,5 +146,6 @@ closeDoorBtn.addEventListener("click", () => {
 
 renderFloors();
 updateElevatorPosition();
+updateSceneImage();
 updateTexts();
 markCurrentFloor();

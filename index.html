@@ -19,12 +19,21 @@
     <section class="game" aria-labelledby="game-title">
       <h2 id="game-title">在线小游戏：电梯模拟器</h2>
 
+      <div class="scene-stage" aria-label="第一人称电梯视角">
+        <div class="camera" id="camera">
+          <img id="scene-image" class="scene-image" src="assets/scenes/floor-1-lobby.jpg" alt="1楼电梯外场景">
+          <div class="view-door view-door-left" id="view-door-left"></div>
+          <div class="view-door view-door-right" id="view-door-right"></div>
+          <p class="floor-chip" id="floor-chip">1F</p>
+        </div>
+      </div>
+
       <div class="simulator">
         <div class="building" aria-label="电梯大楼">
           <div class="shaft">
             <div class="elevator" id="elevator">
-              <div class="door door-left" id="door-left"></div>
-              <div class="door door-right" id="door-right"></div>
+              <div class="door door-left"></div>
+              <div class="door door-right"></div>
               <span class="elevator-label">电梯</span>
             </div>
           </div>
